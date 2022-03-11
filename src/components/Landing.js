@@ -1,10 +1,11 @@
 import React from 'react'
+import { Link } from 'react-router-dom';
 
 import Rocket from '../assets/images/rocket.png';
 export default function Landing() {
   return (
     <div>
-        <div className="grid grid-cols-2 gap-4 max-w-7xl mx-auto ">
+        <div className="grid grid-cols-2 gap-4 max-w-7xl mx-auto pb-10">
             <div className='my-auto'>
                 <h1 className="font-bold text-6xl ml-8 text-left leading-tight">Shop with <span className="Text-underline">confidence</span> Anywhere in Nigeria</h1>
                 <p className='text-left ml-8 text-[#858585] mt-6 text-[24px]'>Get the best value for your money</p>
@@ -15,11 +16,11 @@ export default function Landing() {
                     placeholder='Search for anything'
                    />
                    
-                    <button
-                    className='App-background-primary h-[58px] text-white rounded-r-lg'
+                    <Link to="search"
+                    className='App-background-primary h-[58px] text-white rounded-r-lg flex flex-col justify-center'
                     >
                       Search 
-                    </button>
+                    </Link>
                    
 
                 </div>

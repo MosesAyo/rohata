@@ -12,7 +12,7 @@ import instrument from '../assets/svg/guitar.svg';
 export default function TopCategories() {
   return (
       <div className='bg-[#F3F3F3]'>
-        <div className='max-w-7xl mx-auto pt-24'>
+        <div className='max-w-7xl mx-auto pt-24 pb-24'>
             <h1 className='text-[34px] font-bold'>Top Categories</h1>
             <div className='mt-24 '>
                 <div class="grid grid-cols-4 gap-10">
