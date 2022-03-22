@@ -4,7 +4,7 @@ import './css/footer.css';
  const footer = function Footer() {
   return (
       <div className="footer-background ">
-            <div class="grid grid-cols-4 gap-4 max-w-7xl mx-auto">
+            <div className="grid grid-cols-4 gap-4 max-w-7xl mx-auto">
                 <div className='mt-10 mb-10'>
                     <h1 className='text-white font-bold text-[34px] text-left'>Rohata</h1>
                     <div className='h-[60px] content-start grid grid-flow-row-dense grid-cols-3 grid-rows-3 border border-[#C6C6C6] pl-2  rounded-xl mt-20 bg-[#626262]'>
