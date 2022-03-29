@@ -1,30 +1,41 @@
-import React, {useState} from 'react'
-import { Link } from 'react-router-dom'
+import React, {useState, useEffect} from 'react'
 import axios from 'axios';
 import Navbar from './Navbar'
 import SearchCard from './SearchCard'
+import { Link,  useLocation } from 'react-router-dom';
 
 export default function Search() {
 
   const [searchText, setSearchText] = useState('');
   const [error, setError] = useState('');
   const [searchResult, setSearchResult] = useState([]);
+  const {state} = useLocation();
 
-  const searchAds = (e)=>{
-    const userToken = localStorage.getItem('jwtToken');
+  useEffect(() => {
+    // setProductDetails(state)
+
+    if(state.searchText){
+      searchAds(state.searchText)
+    }
+    console.log(state)
+  }, [state.searchText]);
+
+
+  const searchAds = (text)=>{
+    // const userToken = localStorage.getItem('jwtToken');
     console.log("Trying to search")
-    e.preventDefault(); 
+    // e.preventDefault(); 
     axios
     .post(
         'https://rohata.herokuapp.com/api/advertisements/search',
           {
-              text: searchText
+              text: text
           },
-          {
-            'headers':{
-              'Authorization': userToken
-            }
-          }
+          // {
+          //   'headers':{
+          //     'Authorization': userToken
+          //   }
+          // }
         )
         .then(
             async (res) => {
@@ -56,7 +67,7 @@ export default function Search() {
                    />
                    
                     <button 
-                    onClick={searchAds}
+                    onClick={()=>searchAds(searchText)}
                       className='App-background-primary h-[58px] text-white rounded-r-lg flex flex-col justify-center'
                     >
                       <p className='text-center mx-auto'>Search</p>

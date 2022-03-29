@@ -10,9 +10,9 @@ import TopCategories from './TopCategories';
 export default function Home() {
   return (
     <div>
-        <div className="absolute top-0 right-0">
+        {/* <div className="absolute top-0 right-0">
               <img src={BackgroundPath} alt="" />
-            </div>
+            </div> */}
         <Navbar/>
         <Landing/>
         <TopCategories/>

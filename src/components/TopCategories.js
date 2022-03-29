@@ -15,7 +15,7 @@ export default function TopCategories() {
         <div className='max-w-7xl mx-auto pt-24 pb-24'>
             <h1 className='text-[34px] font-bold'>Top Categories</h1>
             <div className='mt-24 '>
-                <div class="grid grid-cols-4 gap-10">
+                <div className="grid grid-cols-2 md:grid-cols-4 gap-10">
                     <div>
                         <div className='flex justify-center'>
                             <div className='bg-[#ffffff] h-[140px] w-[140px] rounded-xl flex flex-col justify-center p-10'>
