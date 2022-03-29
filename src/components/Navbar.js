@@ -6,6 +6,7 @@ import { Transition } from "@headlessui/react";
 export default function Navbar() {
     const [isOpen, setIsOpen] = useState(false);
     const userToken = localStorage.getItem('jwtToken');
+    const userName = localStorage.getItem('name');
     console.log(userToken)
   return (
     <div className='z-[9999]'>
@@ -19,6 +20,7 @@ export default function Navbar() {
                     <p className="App-color Brand-text">Rohata</p>
                 </Link>
               </div>
+              
               <div className="hidden md:block">
                   <div className=''>
                     <div className="ml-10 flex items-baseline space-x-4">
@@ -36,16 +38,21 @@ export default function Navbar() {
                         My Ads
                     </Link>
 
-                    <Link
+                    {/* <Link
                         to="/"
                         className="text-black hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium"
                     >
                         Account
-                    </Link>
+                    </Link> */}
                     </div>
                   </div>
               </div>
+            
             </div>
+            {userToken?
+              <div>
+                  <p>{userName}</p>
+              </div>:
             <div className="absolute inset-y-0 right-0 flex items-center pr-2 sm:static sm:inset-auto sm:ml-6 sm:pr-0 hidden md:block">
                 <div className="grid grid-cols-2 divide-x">
                     <div className="pr-4">
@@ -60,6 +67,7 @@ export default function Navbar() {
                     </div>
                 </div>
             </div>
+            }
             <div className="-mr-2 flex md:hidden">
               <button
                 onClick={() => setIsOpen(!isOpen)}

@@ -41,10 +41,10 @@ export default function Register() {
             async (res) => {
                 console.log(res.data.token)
                 localStorage.setItem('jwtToken', res.data.token);
-                localStorage.setItem('name', JSON.stringify(res.data.user.name));
-                localStorage.setItem('email', JSON.stringify(res.data.user.email));
-                localStorage.setItem('phoneNumber', JSON.stringify(res.data.user.phoneNumber));
-                localStorage.setItem('notification', JSON.stringify(res.data.user.notification));
+                localStorage.setItem('name', res.data.user.name);
+                localStorage.setItem('email', res.data.user.email);
+                localStorage.setItem('phoneNumber', res.data.user.phoneNumber);
+                localStorage.setItem('notification', res.data.user.notification);
                 setAuthToken(res.data.token);
                 navigate('/', { state: {} });
                 // console.log(res.status)
