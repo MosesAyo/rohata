@@ -5,6 +5,8 @@ import { Transition } from "@headlessui/react";
 
 export default function Navbar() {
     const [isOpen, setIsOpen] = useState(false);
+    const userToken = localStorage.getItem('jwtToken');
+    console.log(userToken)
   return (
     <div className='z-[9999]'>
         <nav className="bg-white">

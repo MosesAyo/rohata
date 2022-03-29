@@ -63,8 +63,8 @@ export default function PostAds() {
             bodyFormData,
             { 
                 headers: {
-                    "Content-Type": "multipart/form-data"
-                    // "Authorization" : userToken
+                    "Content-Type": "multipart/form-data",
+                    "Authorization" : userToken
                 } 
             }
         )

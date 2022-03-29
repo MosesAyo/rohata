@@ -1,6 +1,7 @@
 import React, {useState} from 'react'
 import axios from 'axios'
 import setAuthToken from '../utils/setAuthToken';
+import {useNavigate } from 'react-router-dom';
 
 import itemImage from '../assets/images/ball-image.jpg';
 
@@ -9,6 +10,9 @@ export default function Login() {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [error, setError] = useState('');
+
+    const navigate = useNavigate();
+   
 
 
     // const onChange = (val, func)=>{
@@ -33,13 +37,14 @@ export default function Login() {
             })
             .then(
                 async (res) => {
-                    console.log(res.data.token)
+                    // console.log(res.data.token)
                     localStorage.setItem('jwtToken', res.data.token);
                     localStorage.setItem('name', JSON.stringify(res.data.user.name));
                     localStorage.setItem('email', JSON.stringify(res.data.user.email));
                     localStorage.setItem('phoneNumber', JSON.stringify(res.data.user.phoneNumber));
                     localStorage.setItem('notification', JSON.stringify(res.data.user.notification));
                     setAuthToken(res.data.token);
+                    navigate('/', { state: {} });
                 })
             .catch((err) => {
                 if(err){
