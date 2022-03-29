@@ -1,5 +1,7 @@
 import React from 'react'
 
+import {Link} from 'react-router-dom';
+
 export default function Navbar() {
   return (
     <div>
@@ -39,7 +41,7 @@ export default function Navbar() {
                     <div className="hidden sm:block sm:ml-6 ">
                         <div className="flex flex-shrink-0 items-center justify-center">
                             {/* <!-- Current: "bg-gray-900 text-white", Default: "text-gray-300 hover:bg-gray-700 hover:text-white" --> */}
-                            <a href="#" className="text-black px-3 pt-4 text-md " >Sell</a>
+                            <Link to="/create-ads" className="text-black px-3 pt-4 text-md " >Sell</Link>
 
                             <a href="#" className="text-black px-3  pt-4 text-md ">My Ads</a>
 
