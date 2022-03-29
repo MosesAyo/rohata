@@ -3,6 +3,7 @@ import itemImage from '../assets/images/pl3.jpg';
 import axios from 'axios';
 import setAuthToken from '../utils/setAuthToken';
 import Navbar from './Navbar';
+import {useNavigate } from 'react-router-dom';
 
 
 export default function PostAds() {
@@ -14,6 +15,7 @@ export default function PostAds() {
     const [additional, setAdditional] = useState('');
     const [image, setImage] = useState('');
     const [error, setError] = useState('');
+    const navigate = useNavigate();
 
 
     // const onChange = (val, func)=>{
@@ -71,6 +73,7 @@ export default function PostAds() {
         .then(
             async (res) => {
                 console.log(res.data)
+                navigate('/', { state: {} });
             })
         .catch((err) => {
             if(err){
