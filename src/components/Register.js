@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import itemImage from '../assets/images/pl3.jpg';
 import axios from 'axios';
 import setAuthToken from '../utils/setAuthToken';
+import {useNavigate } from 'react-router-dom';
 
 export default function Register() {
     const [name, setName] = useState('');
@@ -9,6 +10,8 @@ export default function Register() {
     const [phone, setPhone] = useState('');
     const [password, setPassword] = useState('');
     const [error, setError] = useState('');
+
+    const navigate = useNavigate();
 
 
     // const onChange = (val, func)=>{
@@ -23,10 +26,10 @@ export default function Register() {
         console.log("Sending")
         // e.preventDefault();
 
-        console.log(name);
-        console.log(email);
-        console.log(phone);
-        console.log(password);
+        // console.log(name);
+        // console.log(email);
+        // console.log(phone);
+        // console.log(password);
         axios
         .post('https://rohata.herokuapp.com/api/users/register', {
             name,
@@ -43,6 +46,7 @@ export default function Register() {
                 localStorage.setItem('phoneNumber', JSON.stringify(res.data.user.phoneNumber));
                 localStorage.setItem('notification', JSON.stringify(res.data.user.notification));
                 setAuthToken(res.data.token);
+                navigate('/', { state: {} });
                 // console.log(res.status)
                 // console.log('Got a response')
                 // console.log(JSON.stringify(res.data.token))
