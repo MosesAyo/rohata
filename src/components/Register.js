@@ -1,31 +1,62 @@
 import React, { useState } from 'react'
 import itemImage from '../assets/images/pl3.jpg';
 import axios from 'axios';
+import setAuthToken from '../utils/setAuthToken';
 
 export default function Register() {
-    const [fullname, setFullname] = useState('');
+    const [name, setName] = useState('');
     const [email, setEmail] = useState('');
     const [phone, setPhone] = useState('');
     const [password, setPassword] = useState('');
+    const [error, setError] = useState('');
 
 
     // const onChange = (val, func)=>{
     // }
 
+    // localStorage.setItem('myData', data);
+
+    // localStorage.getItem('myData');
+
 
     const registerUser = (e)=>{
         console.log("Sending")
         // e.preventDefault();
+
+        console.log(name);
+        console.log(email);
+        console.log(phone);
+        console.log(password);
         axios
         .post('https://rohata.herokuapp.com/api/users/register', {
-            fullname: fullname,
-            email: email,
-            password: password,
-            phone: phone
+            name,
+            email,
+            password,
+            phone
         })
-        .then(res => console.log(res))
-        .catch(err =>
-        console.log(err)
+        .then(
+            async (res) => {
+                console.log(res.data.token)
+                localStorage.setItem('jwtToken', res.data.token);
+                localStorage.setItem('name', JSON.stringify(res.data.user.name));
+                localStorage.setItem('email', JSON.stringify(res.data.user.email));
+                localStorage.setItem('phoneNumber', JSON.stringify(res.data.user.phoneNumber));
+                localStorage.setItem('notification', JSON.stringify(res.data.user.notification));
+                setAuthToken(res.data.token);
+                // console.log(res.status)
+                // console.log('Got a response')
+                // console.log(JSON.stringify(res.data.token))
+                // console.log(JSON.stringify(res.data.user.name))
+                // console.log(JSON.stringify(res.data.user.email))
+                // console.log(JSON.stringify(res.data.user.phoneNumber))
+                // console.log(JSON.stringify(res.data.user.notification))
+            })
+        .catch((err) => {
+            if(err){
+                setError(err.response.data.msg)
+                console.log(err.response.status);
+            }
+            }
         );
     }
 
@@ -48,7 +79,8 @@ export default function Register() {
                         <div className='pt-2'>
                             <label htmlFor= "name" className="sr-only">Fullname</label>
                             <input 
-                                onChange={(val)=>setFullname(val)}
+                                onChange={(e)=>setName(e.target.value)}
+                                value={name}
                                 id="name" 
                                 name="name" 
                                 type="name" 
@@ -61,7 +93,8 @@ export default function Register() {
                         <div className='pt-2'>
                             <label htmlFor= "email-address" className="sr-only">Email address</label>
                             <input 
-                                onChange={(val)=>setEmail(val)}
+                                onChange={(e)=>setEmail(e.target.value)}
+                                value={email}
                                 id="email-address" 
                                 name="email" 
                                 type="email" 
@@ -74,7 +107,8 @@ export default function Register() {
                         <div className='pt-2'>
                             <label htmlFor= "phone" className="sr-only">Phone number</label>
                             <input 
-                                onChange={(val)=>setPhone(val)}
+                                onChange={(e)=>setPhone(e.target.value)}
+                                value = {phone}
                                 id="phone" 
                                 name="phone" 
                                 type="phone" 
@@ -87,11 +121,15 @@ export default function Register() {
                         <div className='pt-2'>
                             <label htmlFor="password" className="sr-only">Password</label>
                             <input 
-                                onChange={(val)=>setPassword(val)}
-                                id="password" 
-                                name="password" 
-                                type="password" 
-                                autoComplete="current-password" 
+                                onChange={(e)=>{
+                                    // console.log(e.target.value)
+                                    setPassword(e.target.value)
+                                }}
+                                value = {password}
+                                id="password"
+                                name="password"
+                                type="password"
+                                autoComplete="current-password"
                                 required className="h-16 appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-t-md rounded-b-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm" 
                                 placeholder="Password"
                                 />
@@ -111,7 +149,7 @@ export default function Register() {
 
                     <div>
                         <button 
-                            onSubmit={()=>registerUser()}
+                            onClick={registerUser}
                             type="button" 
                             className="h-16 group relative w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
                             >

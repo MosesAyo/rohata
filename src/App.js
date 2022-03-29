@@ -8,6 +8,7 @@ import Search from './components/Search';
 import Details from './components/Details';
 import Login from './components/Login';
 import Register from './components/Register';
+import CreateAds from './components/PostAds';
 
 function App() {
   return (
@@ -18,6 +19,7 @@ function App() {
         <Route path="details" element={ <Details/>} />
         <Route path="login" element={ <Login/>} />
         <Route path="register" element={ <Register/>} />
+        <Route path="create-ads" element={ <CreateAds/>} />
       </Routes>
       <Footer/>
     </div>
